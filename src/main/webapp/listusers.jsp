@@ -1,40 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>list books</title>
+<title>List Users</title>
 </head>
 <body>
-	<jsp:include page="layout/header.jsp"></jsp:include>
+<jsp:include page="layout/header.jsp"></jsp:include>
 
 	<div class="container">
-		<h3>List of Books</h3>
-		<table border="1" id="booktable" class="table bordered">
+		<h3>List of Users</h3>
+		<table border="1" id="usertable" class="table bordered">
 			<thead>
 				<tr>
 					<th>Id</th>
 					<th>Name</th>
-					<th>Author Name</th>
-					<th>Price</th>
-					<th>Published Date</th>
+					<th>EMail</th>
+					<th>Password</th>
+					<th>Created Date</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="book" items="${BOOKLIST}">
+				<c:forEach var="user" items="${USERLIST}">
 					<tr>
-						<td>${book.id}</td>
-						<td>${book.name}</td>
-						<td>${book.authorName}</td>
-						<td>${book.price}</td>
-						<td>${book.publishedDate}</td>
+						<td>${user.id}</td>
+						<td>${user.name}</td>
+						<td>${user.email}</td>
+						<td>${user.password}</td>
+						<td>${user.createdDate}</td>
 						<td><a
-							href="<%=request.getContextPath()%>/books/edit?id=${book.id}"
+							href="<%=request.getContextPath()%>/users/edit?id=${user.id}"
 							class="fa fa-pencil" data-toggle="tooltip" data-placement="top"
 							aria-hidden="true" title="edit"></a> <a
-							href="<%=request.getContextPath()%>/books/delete?id=${book.id}"
+							href="<%=request.getContextPath()%>/users/delete?id=${user.id}"
 							class="fa fa-times" aria-hidden="true" data-toggle="tooltip"
 							data-placement="top" title="remove"> </a></td>
 					</tr>
@@ -43,6 +43,5 @@
 		</table>
 
 	</div>
-
 </body>
 </html>

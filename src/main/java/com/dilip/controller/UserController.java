@@ -1,8 +1,6 @@
 package com.dilip.controller;
 
 import java.util.List;
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,32 +8,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.dilip.dao.BookDAO;
-import com.dilip.model.Book;
+import com.dilip.dao.UserDAO;
+import com.dilip.model.User;
 
 @Controller
-@RequestMapping("/books")
-public class BookController {
+@RequestMapping("/users")
+public class UserController {
 
 	@GetMapping("/findall")
 	public String findAll(ModelMap model) {
 
-		BookDAO dao = new BookDAO();
+		UserDAO dao = new UserDAO();
 		try {
-			List<Book> bookList = dao.findAll();
-			model.addAttribute("BOOKLIST", bookList);
+			List<User> userList = dao.findAll();
+			model.addAttribute("USERLIST", userList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "listbooks";
+		return "listusers";
 	}
 
 	@GetMapping("/edit")
 	public String findById(@RequestParam("id") String id, ModelMap model) {
-		BookDAO dao = new BookDAO();
+		UserDAO dao = new UserDAO();
 		try {
-			Book book = dao.findById(Integer.parseInt(id));
-			model.addAttribute("BOOK", book);
+			User user = dao.findById(Integer.parseInt(id));
+			model.addAttribute("USER", user);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,53 +41,53 @@ public class BookController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "updatebook";
+		return "updateuser";
 	}
 
 	@PostMapping("/update")
 	public String update(@RequestParam("id") String id, @RequestParam("name") String name,
-			@RequestParam("author_name") String authorName, @RequestParam("price") String price, ModelMap model) {
-		Book book = new Book();
-		book.setId(Integer.parseInt(id));
-		book.setName(name);
-		book.setAuthorName(authorName);
-		book.setPrice(Float.parseFloat(price));
-		BookDAO dao = new BookDAO();
+			@RequestParam("email") String email, @RequestParam("password") String password, ModelMap model) {
+		User user = new User();
+		user.setId(Integer.parseInt(id));
+		user.setName(name);
+		user.setEmail(email);
+		user.setPassword(password);
+		UserDAO dao = new UserDAO();
 		try {
-			dao.update(book);
-			List<Book> bookList = dao.findAll();
-			model.addAttribute("BOOKLIST", bookList);
+			dao.update(user);
+			List<User> userList = dao.findAll();
+			model.addAttribute("USERLIST", userList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "listbooks";
+		return "listusers";
 	}
 
 	@PostMapping("/save")
-	public String save(@RequestParam("name") String name, @RequestParam("author_name") String authorName,
-			@RequestParam("price") String price, ModelMap model) {
-		Book book = new Book();
-		book.setName(name);
-		book.setAuthorName(authorName);
-		book.setPrice(Float.parseFloat(price));
-		BookDAO dao = new BookDAO();
+	public String save(@RequestParam("name") String name, @RequestParam("email") String email,
+			@RequestParam("password") String password, ModelMap model) {
+		User user = new User();
+		user.setName(name);
+		user.setEmail(email);
+		user.setPassword(password);
+		UserDAO dao = new UserDAO();
 		try {
-			dao.save(book);
-			List<Book> bookList = dao.findAll();
-			model.addAttribute("BOOKLIST", bookList);
+			dao.save(user);
+			List<User> userList = dao.findAll();
+			model.addAttribute("USERLIST", userList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "listbooks";
+		return "listusers";
 	}
 
 	@GetMapping("/delete")
 	public String delete(@RequestParam("id") String id, ModelMap model) {
-		BookDAO dao = new BookDAO();
+		UserDAO dao = new UserDAO();
 		try {
 			dao.delete(Integer.parseInt(id));
-			List<Book> bookList = dao.findAll();
-			model.addAttribute("BOOKLIST", bookList);
+			List<User> userList = dao.findAll();
+			model.addAttribute("USERLIST", userList);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,7 +95,7 @@ public class BookController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "listbooks";
+		return "listusers";
 	}
 
 }
