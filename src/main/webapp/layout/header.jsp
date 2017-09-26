@@ -64,7 +64,7 @@ body {
 				class="nav-link dropdown-toggle" href="#users" id="dropdown01"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
 				<div class="dropdown-menu" aria-labelledby="dropdown01">
-					<a class="dropdown-item" href="#users">List Users</a> <a
+					<a class="dropdown-item" href="<%=request.getContextPath()%>/listusers.jsp">List Users</a> <a
 						class="dropdown-item" href="adduser.jsp">Add User</a>
 					<!-- <a class="dropdown-item" href="#myprofile">My Profile</a> -->
 				</div></li>
